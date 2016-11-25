@@ -22,7 +22,7 @@ function getQuote() {
     http.send(params);
 }
 
-function createTwitterButton() {
+function navigateTwitter() {
     var phrase = data.quote.concat(' - ').concat(data.author);
     var tweetUrl = 'https://twitter.com/share?text=' +
       encodeURIComponent(phrase) +
