@@ -5,6 +5,7 @@ var qt;
 var data;
 
 function getQuote() {
+    changeColors('green');
     document.getElementsByClassName("btn").href = "xyz.php";
     http.open("POST", url, true);
     http.setRequestHeader("X-Mashape-Key", "LN2cRRkVWKmshmqzmtqXgDecHpycp1sMttKjsneiFQNOn8Msqn");
@@ -12,15 +13,18 @@ function getQuote() {
     http.setRequestHeader("Accept", "application/json");
 
     http.onreadystatechange = function() { //Call a function when the state changes.
-        if (http.readyState == 4 && http.status == 200) {
-            console.log(http.responseText);
+        if (http.readyState === 4 && http.status === 200) {
             data = JSON.parse(http.responseText);
             $('#quote').html(data.quote);
             $('#author').html(data.author);
-            setQuote(data);
         }
     };
     http.send(params);
+}
+
+function changeColors(color){
+   document.body.style.background = color;
+   document.getElementsByClassName("btn").background-color = color;
 }
 
 function createTwitterButton() {
