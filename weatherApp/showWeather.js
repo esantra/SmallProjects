@@ -5,10 +5,8 @@ var convertVar;
 
 function returnWeather() {
     var xhr = new XMLHttpRequest();
-    //url = 'http://api.openweathermap.org/data/2.5/weather?lat='.concat(latitude).concat('&lon=').concat(longitude).concat('&appid=56719a6c3b68e79e0551fb7775e1676b');
-    var url = 'http://cors.io/?https://api.darksky.net/forecast/9a8cae9e0217f3b909ae5b99f59e12c5/' + latitude + ',' + longitude;
+    var url = 'http://api.openweathermap.org/data/2.5/weather?lat='.concat(latitude).concat('&lon=').concat(longitude).concat('&appid=56719a6c3b68e79e0551fb7775e1676b');
     xhr.open("GET", url, false);
-    //xhr.setRequestHeader('Access-Control-Allow-Origin',  '*');
     xhr.send();
 
     data = JSON.parse(xhr.responseText);
