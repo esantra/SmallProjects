@@ -3,13 +3,23 @@ var longitude;
 var temperature;
 var convertVar;
 
+function convertKelvin(type, temperature) {
+    if (type === 'f') {
+        temperature = temperature * (9 / 5) - 459.67;
+    }
+    if (type === 'c') {
+        temperature = temperature - 273.15;
+    }
+    return temperature.toFixed(2);
+}
+
 function returnWeather() {
     var xhr = new XMLHttpRequest();
     var url = 'http://api.openweathermap.org/data/2.5/weather?lat='.concat(latitude).concat('&lon=').concat(longitude).concat('&appid=56719a6c3b68e79e0551fb7775e1676b');
     xhr.open("GET", url, false);
     xhr.send();
 
-    data = JSON.parse(xhr.responseText);
+    var data = JSON.parse(xhr.responseText);
     console.log(JSON.stringify(data));
     var picture = data.weather[0].main;
 
@@ -24,7 +34,7 @@ function returnWeather() {
 }
 
 function convert() {
-    if (convertVar == 'c' || !convertVar) {
+    if (convertVar === 'c' || !convertVar) {
         document.getElementById("temperature").innerHTML = convertKelvin('c', temperature) + '&deg;';
         convertVar = 'f';
     } else {
@@ -33,16 +43,6 @@ function convert() {
     }
 }
 
-
-function convertKelvin(type, temperature) {
-    if (type == 'f') {
-        temperature = temperature * (9 / 5) - 459.67;
-    }
-    if (type == 'c') {
-        temperature = temperature - 273.15;
-    }
-    return temperature.toFixed(2);
-}
 
 function geoFindMe() {
     var output = document.getElementById("location");
@@ -64,7 +64,6 @@ function geoFindMe() {
         $.getJSON(geocodeCity).done(function(location) {
             country.innerHTML = location.results[0].address_components[7].long_name;
             state.innerHTML = location.results[0].address_components[6].long_name;
-            street.innerHTML = location.results[0].address_components[1].long_name;
             city.innerHTML = location.results[0].address_components[3].long_name;
         });
         output.innerHTML = latitude + ' ' + longitude;
