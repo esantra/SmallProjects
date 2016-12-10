@@ -1,0 +1,25 @@
+body {
+    background-color: black;
+}
+
+.articleDiv {
+    border: 1px;
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    padding: 3%;
+    visibility: hidden;
+}
+
+.cards {
+    margin-top: 20px;
+}
+
+.h2 {
+    color: white;
+}

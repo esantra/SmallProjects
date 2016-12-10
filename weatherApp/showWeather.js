@@ -1,7 +1,6 @@
 var latitude;
 var longitude;
 var temperature;
-var convertVar;
 
 function convertKelvin(type, temperature) {
     if (type === 'f') {
@@ -33,16 +32,28 @@ function returnWeather() {
     return 'done';
 }
 
-function convert() {
-    if (convertVar === 'c' || !convertVar) {
-        document.getElementById("temperature").innerHTML = convertKelvin('c', temperature) + '&deg;';
-        convertVar = 'f';
-    } else {
-        document.getElementById("temperature").innerHTML = convertKelvin('f', temperature) + '&deg;';
-        convertVar = 'c';
-    }
-}
+/*var add = (function () {
+    var counter = 0;
+    return function () {return counter += 1;}
+})();*/
 
+var convert = (function() {
+    convertVar = null;
+    console.log('here');
+    return function(){
+      if (convertVar === 'c' || !convertVar) {
+          document.getElementById("temperature").innerHTML = convertKelvin('c', temperature) + '&deg;';
+          convertVar = 'f';
+      } else {
+          document.getElementById("temperature").innerHTML = convertKelvin('f', temperature) + '&deg;';
+          convertVar = 'c';
+      }
+    };
+});
+
+function getConvert(){
+  return this.convert;
+}
 
 function geoFindMe() {
     var output = document.getElementById("location");

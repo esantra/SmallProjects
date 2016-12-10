@@ -1,9 +1,7 @@
-var data;
+getQuote();
 
 function getQuote() {
-    var http = new XMLHttpRequest();
-    var url = "https://andruxnet-random-famous-quotes.p.mashape.com/";
-    var params = "lorem=ipsum&name=binny";
+    document.getElementsByClassName("btn").href = "xyz.php";
     http.open("POST", url, true);
     http.setRequestHeader("X-Mashape-Key", "LN2cRRkVWKmshmqzmtqXgDecHpycp1sMttKjsneiFQNOn8Msqn");
     http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -18,14 +16,4 @@ function getQuote() {
         }
     };
     http.send(params);
-}
-
-function navigateTwitter() {
-    var phrase = data.quote.concat(' - ').concat(data.author);
-    var tweetUrl = 'https://twitter.com/share?text=' +
-      encodeURIComponent(phrase) +
-      '.' +
-      '&url=';
-
-    window.open(tweetUrl);
 }
