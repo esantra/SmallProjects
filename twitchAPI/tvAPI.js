@@ -1,19 +1,21 @@
-getQuote();
-
 function getQuote() {
-    document.getElementsByClassName("btn").href = "xyz.php";
-    http.open("POST", url, true);
-    http.setRequestHeader("X-Mashape-Key", "LN2cRRkVWKmshmqzmtqXgDecHpycp1sMttKjsneiFQNOn8Msqn");
-    http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    http.setRequestHeader("Accept", "application/json");
+  var xhr = new XMLHttpRequest();
+  var url =  "https://wind-bow.gomix.me/twitch-api/channels/hebo";
+  xhr.open("GET", url, false);
+  //set header to application/vnd.twitchtv.v3+json
+  xhr.setRequestHeader("Accept", "application/vnd.twitchtv.v3+json");
+  xhr.send();
 
-    http.onreadystatechange = function() { //Call a function when the state changes.
-        if (http.readyState === 4 && http.status === 200) {
-            data = JSON.parse(http.responseText);
-            $('#quote').html(data.quote);
-            $('#author').html(data.author);
-            setQuote(data);
-        }
-    };
-    http.send(params);
+  var data = JSON.parse(xhr.responseText);
+  console.log(JSON.stringify(data));
+  var picture = data.weather[0].main;
+
+  var icon = data.weather[0].icon;
+  var sourcePic = 'http://openweathermap.org/img/w/'.concat(icon).concat('.png');
+  document.getElementById("picture").src = sourcePic;
+  document.getElementById("message").innerHTML = data.weather[0].main;
+  document.getElementById("temperature").innerHTML = convertKelvin('f', data.main.temp) + '&deg;';
+  temperature = data.main.temp;
+
+  return 'done';
 }
