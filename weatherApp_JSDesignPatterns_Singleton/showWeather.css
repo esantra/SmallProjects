@@ -1,0 +1,15 @@
+body{
+  font-size: 24px;
+}
+.weather{
+  width: 20%;
+  margin: 0 auto 0 auto;
+  text-align: center;
+  background-color: #B0E0E6;
+}
+.degree{
+  display: inline-block;
+}
+.loc{
+  font-size:16px;
+}
