@@ -1,11 +1,9 @@
-var http = new XMLHttpRequest();
-var url = "https://andruxnet-random-famous-quotes.p.mashape.com/";
-var params = "lorem=ipsum&name=binny";
-var qt;
 var data;
 
 function getQuote() {
-    document.getElementsByClassName("btn").href = "xyz.php";
+    var http = new XMLHttpRequest();
+    var url = "https://andruxnet-random-famous-quotes.p.mashape.com/";
+    var params = "lorem=ipsum&name=binny";
     http.open("POST", url, true);
     http.setRequestHeader("X-Mashape-Key", "LN2cRRkVWKmshmqzmtqXgDecHpycp1sMttKjsneiFQNOn8Msqn");
     http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
