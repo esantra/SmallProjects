@@ -1,0 +1,130 @@
+//coded as part of this learning tutorial: https://appendto.com/2016/11/comparing-angular-1-angular-2-build-a-pomodoro-timer/?nabw=1&utm_referrer=https%3A%2F%2Fwww.google.com%2F
+var app = angular.module("pomodoroApp", []);
+
+app.component('pomodoroComp', {
+    bindings: {},
+    templateUrl: '/componentGrid.html',
+    controller: ['$interval', function(interval) {
+
+        var self = this;
+        self.started = false;
+        self.clickClock = false;
+        self.clockLabel = 'Session';
+
+        self.minutes = 25;
+        self.seconds = 3;
+        self.bminutes = 5;
+        self.bseconds = 3;
+        self.fillerIncrement = 200 / (self.minutes * 60);
+        self.fillerHeight = 0;
+        self.pomo = true;
+
+        self.resetVariables = function(mins, secs, started, bmins, bsecs, pomo) {
+            self.minutes = mins;
+            self.seconds = secs;
+            self.bMinutes = bmins;
+            self.bSeconds = bsecs;
+            self.started = started;
+            self.pomo = pomo;
+
+            if(self.pomo){
+              console.log('pomo');
+              self.fillerIncrement = 200 / (self.minutes * 60);
+              self.fillerHeight = 0;
+
+            } else {
+              console.log('not pomo');
+              self.fillerIncrement = 200 / (self.bMinutes * 60);
+              self.fillerHeight = 0;
+            }
+        };
+
+
+
+
+        self.startWork = function() {
+          console.log(self.clickClock);
+            if(!self.clickClock){
+              self.resetVariables(25, 0, true, 5, 0, true);
+              self.clickClock = true;
+            }
+            else{
+              self.resetVariables(25, 0, false, 5, 0, false);
+              self.clickClock = false;
+            }
+        };
+
+        self.addOne = function() {
+            self.minutes = self.minutes + 1;
+        };
+
+        self.minusOne = function() {
+            self.minutes = self.minutes - 1;
+        };
+
+        self.stopTimer = function() {
+            self.resetVariables(25, 0, false, 5, 0, false);
+        };
+
+        self.timerComplete = function() {
+            self.started = false;
+            self.clockLabel = 'Break';
+            if(!self.clickClock){
+              self.resetVariables(25, 0, false, 5, 0, false);
+              self.clickClock = true;
+            }
+            else{
+              self.resetVariables(25, 0, false, 5, 0, true);
+              self.clickClock = false;
+            }
+        };
+
+        /*
+         intervalCallback function is called each second, updates the values of
+         minutes and seconds variables and reflect the updates in timer
+         */
+        self.intervalCallback = function() {
+            if (!self.started) return false;
+            if (self.seconds === 0) {
+                if (self.minutes === 0) {
+                    self.timerComplete();
+                    return;
+                }
+                self.seconds = 59;
+                self.minutes--;
+            } else {
+                self.seconds--;
+            }
+
+            self.fillerHeight += self.fillerIncrement;
+        };
+
+        self.toDoubleDigit = function(num) {
+            return num < 10 ? '0' + parseInt(num, 10) : num;
+        };
+
+
+        /*
+         Init method initializes the timer using $interval function such that a
+         callback function (intervalCallback) is called after every second
+         */
+
+        self.$onInit = function() {
+            self.interval = interval(self.intervalCallback, 1000);
+            /*
+             $onInit is automatically called when component is initialized.
+             interval variable stores the reference id of the currently running
+             interval. If we need to clear the interval, we will need this variable.
+             Although in the demo, we are not clearing the interval, it’s always a good
+             idea to clear the interval at some point.
+             */
+
+
+        };
+
+    }]
+});
+
+
+
+<div class="da_div" style="width: 100%;" data-product-id="8668587985" data-shop-url="rainbow-good-cards.myshopify.com"></div> <script src="https://da.boldapps.net/donations/create_script" ></script>

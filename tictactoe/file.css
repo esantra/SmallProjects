@@ -1,74 +1,54 @@
-body{
-
-	text-align:center;
-
+body {
+    background-color: darkslateblue;
 }
 
-.box{
-
-	text-align:left;
-	width:auto;
-	height:auto;
-
+.text {
+    font: normal 36px/150% Times New Roman, Times, serif;
+    color: #fff;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 44.4%;
+    margin-top: -60px;
 }
 
-h3{
-
-	position:relative;
-	-webkit-animation:h3Animation 5s;
-
+.datagrid table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
 }
 
-h1{
-
-	position:relative;
-	-webkit-animation:h1Animation 5s;
-
+.datagrid {
+    font: normal 12px/150% Times New Roman, Times, serif;
+    background: #fff;
+    overflow: hidden;
+    border: 2px solid #652299;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
 }
 
-h2{
-
-	position:relative;
-	-webkit-animation:h2Animation 5s;
-
+.datagrid table td, .datagrid table th {
+    padding: 20px 20px;
 }
 
-canvas{
-
-	position:relative;
-	-webkit-animation:canvasAnimation 5s;
-
+.datagrid table tbody td {
+    color: #4D1A75;
+    border-left: 5px solid #E7BDFF;
+    font-size: 48px;
+    border-bottom: 5px solid #E1EEF4;
+    height: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70px;
+    text-align: center;
 }
 
-@-webkit-keyframes canvasAnimation {
-
-	0%   {-webkit-transform:rotate(90deg);left:0px; top:0px;}
-
-}
-
-@-webkit-keyframes h1Animation {
-
-	0%   {-webkit-transform:rotate(0deg)}
-	25%   {-webkit-transform:rotate(90deg)}
-	50%  {-webkit-transform:rotate(180deg)}
-	75%  {-webkit-transform:rotate(270deg)}
-	100%  { -webkit-transform:rotate(360deg)}
-
-}
-
-@-webkit-keyframes h2Animation{
-
-	0%   {-webkit-transform: scale(1,2);}
-	25%   {-webkit-transform: scale(2,3);}
-	50%  {-webkit-transform: scale(3,4);}
-	75%  {-webkit-transform: scale(4,5);}
-	100%  { -webkit-transform: scale(0,0);}
-
-}
-@-webkit-keyframes h3Animation{
-
-	0%   {-webkit-transform: scale(0,0);}
-	50% {-webkit-transform: scale(0,0);}
-	100%  {-webkit-transform: scale(100,100);}
-
+.datagrid table tbody .alt td {
+    background: #F4E3FF;
+    color: #4D1A75;
 }

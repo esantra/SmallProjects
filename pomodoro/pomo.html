@@ -1,0 +1,80 @@
+<head>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.3/angular-material.css">
+    <link rel="stylesheet" href="https://material.angularjs.org/1.1.3/docs.css">
+
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-messages.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+    <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.3/angular-material.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="pomodoro.css" />
+</head>
+<script src="pomodoro.js" type="text/javascript" charset="utf-8"></script>
+<!-- a lot of this code taken from https://appendto.com/2016/11/comparing-angular-1-angular-2-build-a-pomodoro-timer/?nabw=1&utm_referrer=https%3A%2F%2Fwww.google.com%2F
+in order to learn Angular a bit more since I use it more often.-->
+<div class="heading"><h1>Free Code Camp Pomodoro Clock</h1>
+
+<div id="pomodoro-app" ng-app="pomodoroApp">
+    <div id="container">
+        <pomodoro-comp minutes="25"></pomodoro-comp>
+    </div>
+    <script type="text/ng-template" id="/componentGrid.html">
+        <div id="timer" ng-click="$ctrl.startWork()">
+            <div id="time">
+                <span>{{$ctrl.clockLabel}}</span>
+                <div class="numberDiv">
+                  <span ng-if="$ctrl.pomo">{{$ctrl.toDoubleDigit($ctrl.minutes)}}</span>
+                  <span ng-if="!$ctrl.pomo">{{$ctrl.toDoubleDigit($ctrl.bMinutes)}}</span>
+                  <span>:</span>
+                  <span ng-if="$ctrl.pomo">{{$ctrl.toDoubleDigit($ctrl.seconds)}}</span>
+                  <span ng-if="!$ctrl.pomo">{{$ctrl.toDoubleDigit($ctrl.bSeconds)}}</span>
+                </div>
+            </div>
+            <div id="filler" ng-style="{height : $ctrl.fillerHeight + 'px'}"></div>
+        </div>
+
+        <div id="buttons" class="leftMargin">
+            <form>
+
+                  <div class="row">
+                      <div class="col-xs-6">Pomodoro</div>
+                      <div class="col-xs-6">Break</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-2" id="minus" ng-click="$ctrl.minusOne()">-</div>
+                      <div class="col-xs-2" id="lengthPomodoro">{{$ctrl.minutes}}</div>
+                      <div class="col-xs-2" id="plus" ng-click="$ctrl.addOne()">+</div>
+
+                      <div class="col-xs-2" id="minus" ng-click="$ctrl.minusBOne()">-</div>
+                      <div class="col-xs-2" id="lengthBreak">{{$ctrl.bMinutes}}</div>
+                      <div class="col-xs-2" id="plus" ng-click="$ctrl.addBOne()">+</div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <button class="btn btn-default" id="reset" ng-click="$ctrl.resetTimer()">Reset</button>
+                    <button class="btn btn-default" id="stop" ng-click="$ctrl.stopTimer()">Stop</button>
+                </div>
+                </div>
+              </form>
+            </div>
+    </script>
+    </div>
